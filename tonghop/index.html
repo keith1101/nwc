@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Reviews Webpage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Load data first -->
+    <script src="data.js"></script>
+    <!-- Load script last -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1>Exam Review</h1>
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search questions by keyword...">
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="stats-bar">
+            Showing <span id="count">0</span> questions
+        </div>
+        <div id="questions-container">
+            <!-- Questions will be injected here by JavaScript -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Exam Review App</p>
+        </div>
+    </footer>
+</body>
+</html>
