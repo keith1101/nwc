@@ -3,553 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NWC204 Exam Navigator</title>
+    <title>Project Navigator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <style>
-        /* ==================== RESET & BASE STYLES ==================== */
+        :root {
+            --bg-color: #202028;
+            --card-bg: #2d2d36;
+            --text-color: #e0e0e0;
+            --primary-color: #6c5ce7;
+            --primary-hover: #5b4bc4;
+            --accent-color: #00e676;
+            --border-color: #000;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            
+            --font-header: 'Press Start 2P', cursive;
+            --font-body: 'VT323', monospace;
+            
+            --pixel-border: 4px solid var(--border-color);
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            font-family: 'VT323', monospace;
-            line-height: 1.6;
-            background: #e8d4a2;
-            color: #3e2731;
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.4;
+            font-size: 1.5rem;
+            background-image: 
+                linear-gradient(45deg, #25252e 25%, transparent 25%, transparent 75%, #25252e 75%, #25252e),
+                linear-gradient(45deg, #25252e 25%, transparent 25%, transparent 75%, #25252e 75%, #25252e);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-        }
-
-        /* ==================== HEADER STYLES ==================== */
-        header {
-            background: linear-gradient(135deg, #7fb069 0%, #5a9367 100%);
-            border-bottom: 4px solid #3e2731;
-            padding: 20px 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        }
-
-        .header-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
+            padding-top: 50px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 0 20px;
         }
 
         h1 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1.4em;
-            color: #f4e4c1;
-            text-shadow: 3px 3px 0px #3e2731;
+            font-family: var(--font-header);
+            font-size: 2rem;
+            color: #ffeb3b;
+            text-shadow: 4px 4px #000;
+            text-align: center;
+            margin-bottom: 40px;
             line-height: 1.5;
-        }
-
-        /* ==================== SEARCH BAR ==================== */
-        .search-container {
-            position: relative;
-            flex: 1;
-            max-width: 300px;
-            min-width: 200px;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 10px 40px 10px 15px;
-            background: #f4e4c1;
-            border: 3px solid #3e2731;
-            border-radius: 8px;
-            color: #3e2731;
-            font-family: 'VT323', monospace;
-            font-size: 1.2em;
-            transition: all 0.3s ease;
-            box-shadow: 2px 2px 0px #3e2731;
-        }
-
-        .search-bar:focus {
-            outline: none;
-            border-color: #d4793c;
-            box-shadow: 0 0 12px rgba(212, 121, 60, 0.4);
-        }
-
-        .search-bar::placeholder {
-            color: #8b7a6a;
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.3em;
-            pointer-events: none;
-        }
-
-        /* ==================== MAIN CONTENT ==================== */
-        main {
-            flex: 1;
-            max-width: 800px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 30px 20px;
-        }
-
-        /* ==================== INFO BAR ==================== */
-        .info-bar {
-            background: linear-gradient(135deg, #d4793c 0%, #c98d62 100%);
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            border: 4px solid #3e2731;
-            font-size: 1.3em;
-            color: #f4e4c1;
-            text-align: center;
-            box-shadow: 4px 4px 0px #3e2731;
-            font-weight: bold;
-        }
-
-        /* ==================== NAVIGATION SECTION ==================== */
-        .nav-section {
-            background: #f9f5e8;
-            border: 4px solid #3e2731;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 6px 6px 0px #3e2731;
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            font-family: 'Press Start 2P', cursive;
-            color: #3e2731;
-            font-size: 1.2em;
-            margin-bottom: 25px;
-            text-align: center;
-            padding-bottom: 15px;
-            border-bottom: 4px solid #c98d62;
         }
 
         .nav-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-        }
-
-        .nav-item {
-            position: relative;
+            gap: 20px;
         }
 
         .nav-item a {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #f4e4c1;
-            border: 3px solid #3e2731;
-            padding: 18px 20px;
-            color: #3e2731;
+            display: block;
+            background-color: var(--card-bg);
+            border: var(--pixel-border);
+            padding: 20px;
+            color: var(--text-color);
             text-decoration: none;
-            border-radius: 10px;
-            box-shadow: 3px 3px 0px #3e2731;
-            transition: all 0.2s ease;
-            font-size: 1.4em;
-            font-weight: bold;
+            box-shadow: 6px 6px 0 var(--shadow-color);
+            transition: transform 0.1s, box-shadow 0.1s;
+            text-align: center;
+            font-size: 1.5rem;
         }
 
         .nav-item a:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: 6px 6px 0px #3e2731;
-            background: #ffe9c9;
-            border-color: #d4793c;
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0 var(--shadow-color);
+            background-color: #363640;
+            color: #fff;
         }
 
         .nav-item a:active {
-            transform: translate(2px, 2px);
-            box-shadow: 1px 1px 0px #3e2731;
+            transform: translate(4px, 4px);
+            box-shadow: 0 0 0 var(--shadow-color);
         }
 
-        .nav-item.special a {
-            background: linear-gradient(135deg, #7fb069 0%, #5a9367 100%);
-            color: #f4e4c1;
-            border-color: #2d5016;
-        }
-
-        .nav-item.special a:hover {
-            background: linear-gradient(135deg, #94c47d 0%, #7fb069 100%);
-        }
-
-        .nav-icon {
-            font-size: 1.2em;
-            margin-right: 10px;
-        }
-
-        .nav-arrow {
-            font-size: 1.3em;
-            transition: transform 0.2s ease;
-        }
-
-        .nav-item a:hover .nav-arrow {
-            transform: translateX(5px);
-        }
-
-        /* ==================== BADGE ==================== */
-        .badge {
-            background: #d4793c;
-            color: #f4e4c1;
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 0.8em;
-            border: 2px solid #3e2731;
-            box-shadow: 2px 2px 0px #3e2731;
-            margin-left: 10px;
-        }
-
-        .badge-new {
-            background: #7fb069;
-            animation: pulse 2s infinite;
-        }
-
-        /* ==================== STATS CARD ==================== */
-        .stats-card {
-            background: #f9f5e8;
-            border: 4px solid #3e2731;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 4px 4px 0px #3e2731;
-            margin-top: 20px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .stat-item {
-            background: #f4e4c1;
-            border: 3px solid #3e2731;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 2px 2px 0px #3e2731;
-        }
-
-        .stat-number {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1.8em;
-            color: #d4793c;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 1.1em;
-            color: #3e2731;
-        }
-
-        /* ==================== FOOTER ==================== */
         footer {
-            background: #c98d62;
-            border-top: 4px solid #3e2731;
-            padding: 20px 0;
-            text-align: center;
-            color: #f4e4c1;
-            font-size: 1.2em;
-            box-shadow: 0 -2px 4px rgba(0,0,0,0.2);
             margin-top: auto;
-        }
-
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* ==================== ANIMATIONS ==================== */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .animate-fade {
-            animation: fadeIn 0.5s ease;
-        }
-
-        /* ==================== RESPONSIVE DESIGN ==================== */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1em;
-            }
-
-            .header-content {
-                justify-content: center;
-            }
-
-            .search-container {
-                max-width: 100%;
-            }
-
-            .nav-section {
-                padding: 20px;
-            }
-
-            .nav-item a {
-                font-size: 1.2em;
-                padding: 15px;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ==================== UTILITY CLASSES ==================== */
-        .hidden {
-            display: none;
-        }
-
-        .text-center {
-            text-align: center;
+            padding: 20px;
+            font-size: 1rem;
+            color: #888;
         }
     </style>
 </head>
 <body>
-    <!-- ==================== HEADER ==================== -->
-    <header>
-        <div class="header-content">
-            <h1>NWC204 EXAM REVIEW</h1>
-            <div class="search-container">
-                <input type="text" class="search-bar" id="searchBar" placeholder="Search exams...">
-                <span class="search-icon">🔍</span>
-            </div>
-        </div>
-    </header>
-
-    <!-- ==================== MAIN CONTENT ==================== -->
-    <main>
-        <!-- Info Bar -->
-        <div class="info-bar">
-            📚 SELECT YOUR EXAM LEVEL 📚
-        </div>
-
-        <!-- Navigation Section -->
-        <div class="nav-section animate-fade">
-            <h2 class="section-title">Available Exams</h2>
-            <ul class="nav-list" id="navList">
-                <li class="nav-item" data-search="nwc204 fa24 b5 fe 311611">
-                    <a href="./NWC204_FA24_B5_FE_311611/index.html">
-                        <span><span class="nav-icon">📝</span>NWC204 FA24 B5 FE 311611</span>
-                        <span class="nav-arrow">→</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-search="nwc204 fa24 fe 889114">
-                    <a href="./NWC204_FA24_FE_889114/index.html">
-                        <span><span class="nav-icon">📝</span>NWC204 FA24 FE 889114</span>
-                        <span class="nav-arrow">→</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-search="nwc204 fa24 re 229089">
-                    <a href="./NWC204_FA24_RE_229089/index.html">
-                        <span><span class="nav-icon">📝</span>NWC204 FA24 RE 229089</span>
-                        <span class="nav-arrow">→</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-search="nwc204 sp25 fe 189684">
-                    <a href="./NWC204_SP25_FE_189684/index.html">
-                        <span><span class="nav-icon">📝</span>NWC204 SP25 FE 189684</span>
-                        <span class="badge badge-new">NEW</span>
-                        <span class="nav-arrow">→</span>
-                    </a>
-                </li>
-                <li class="nav-item special" data-search="tong hop comprehensive all">
-                    <a href="./tonghop/index.html">
-                        <span><span class="nav-icon">⭐</span>TONG HOP (Comprehensive)</span>
-                        <span class="nav-arrow">→</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Stats Card -->
-        <div class="stats-card animate-fade">
-            <h3 class="section-title" style="font-size: 1em;">Quick Stats</h3>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number">5</span>
-                    <span class="stat-label">Exam Sets</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="visitCount">0</span>
-                    <span class="stat-label">Visits</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">2025</span>
-                    <span class="stat-label">Academic Year</span>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- ==================== FOOTER ==================== -->
+    <div class="container">
+        <h1>SELECT LEVEL</h1>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="./NWC204_FA24_B5_FE_311611/index.html">NWC204 FA24 B5 FE 311611</a></li>
+            <li class="nav-item"><a href="./NWC204_FA24_FE_889114/index.html">NWC204 FA24 FE 889114</a></li>
+            <li class="nav-item"><a href="./NWC204_FA24_RE_229089/index.html">NWC204 FA24 RE 229089</a></li>
+            <li class="nav-item"><a href="./NWC204_SP25_FE_189684/index.html">NWC204 SP25 FE 189684</a></li>
+            <li class="nav-item"><a href="./tonghop/index.html">TONG HOP</a></li>
+        </ul>
+    </div>
     <footer>
-        <div class="footer-content">
-            <p>🎓 NWC204 Exam Review Application</p>
-            <p>&copy; 2025 | Good luck with your exams! 🍀</p>
-        </div>
+        &copy; 2025 Exam Review App
     </footer>
-
-    <!-- ==================== JAVASCRIPT ==================== -->
-    <script>
-        // ==================== SEARCH FUNCTIONALITY ====================
-        const searchBar = document.getElementById('searchBar');
-        const navItems = document.querySelectorAll('.nav-item');
-
-        searchBar.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase().trim();
-            
-            navItems.forEach(item => {
-                const searchData = item.getAttribute('data-search');
-                
-                if (searchData.includes(searchTerm)) {
-                    item.style.display = '';
-                    item.classList.add('animate-fade');
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-
-        // ==================== VISIT COUNTER ====================
-        function updateVisitCount() {
-            let visits = localStorage.getItem('nwc204_visits') || 0;
-            visits = parseInt(visits) + 1;
-            localStorage.setItem('nwc204_visits', visits);
-            document.getElementById('visitCount').textContent = visits;
-        }
-
-        // ==================== KEYBOARD SHORTCUTS ====================
-        document.addEventListener('keydown', function(e) {
-            // Press '/' to focus search
-            if (e.key === '/' && document.activeElement !== searchBar) {
-                e.preventDefault();
-                searchBar.focus();
-            }
-            
-            // Press 'Escape' to clear search
-            if (e.key === 'Escape' && document.activeElement === searchBar) {
-                searchBar.value = '';
-                searchBar.dispatchEvent(new Event('input'));
-                searchBar.blur();
-            }
-            
-            // Number shortcuts (1-5)
-            if (e.key >= '1' && e.key <= '5' && document.activeElement !== searchBar) {
-                const index = parseInt(e.key) - 1;
-                const link = navItems[index]?.querySelector('a');
-                if (link) {
-                    window.location.href = link.href;
-                }
-            }
-        });
-
-        // ==================== LAST VISITED TRACKING ====================
-        function trackLastVisited() {
-            const links = document.querySelectorAll('.nav-item a');
-            links.forEach(link => {
-                link.addEventListener('click', function() {
-                    localStorage.setItem('nwc204_last_visited', this.href);
-                    localStorage.setItem('nwc204_last_visited_time', new Date().toISOString());
-                });
-            });
-        }
-
-        // ==================== NOTIFICATION SYSTEM ====================
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${type === 'success' ? '#7fb069' : '#d4793c'};
-                color: #f4e4c1;
-                padding: 15px 20px;
-                border: 3px solid #3e2731;
-                border-radius: 8px;
-                box-shadow: 4px 4px 0px #3e2731;
-                z-index: 1000;
-                font-size: 1.2em;
-                animation: fadeIn 0.3s ease;
-            `;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transition = 'opacity 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
-        }
-
-        // ==================== INITIALIZATION ====================
-        document.addEventListener('DOMContentLoaded', function() {
-            updateVisitCount();
-            trackLastVisited();
-            
-            // Show keyboard shortcut hint on first visit
-            const firstVisit = !localStorage.getItem('nwc204_visited_before');
-            if (firstVisit) {
-                setTimeout(() => {
-                    showNotification('💡 Tip: Press / to search, 1-5 for quick navigation!', 'success');
-                }, 1000);
-                localStorage.setItem('nwc204_visited_before', 'true');
-            }
-            
-            // Highlight last visited
-            const lastVisited = localStorage.getItem('nwc204_last_visited');
-            if (lastVisited) {
-                const links = document.querySelectorAll('.nav-item a');
-                links.forEach(link => {
-                    if (link.href === lastVisited) {
-                        const badge = document.createElement('span');
-                        badge.className = 'badge';
-                        badge.style.background = '#8b7a6a';
-                        badge.textContent = 'Last Visited';
-                        link.querySelector('span').appendChild(badge);
-                    }
-                });
-            }
-        });
-
-        // ==================== RANDOM EXAM SELECTOR ====================
-        function goToRandomExam() {
-            const randomIndex = Math.floor(Math.random() * navItems.length);
-            const link = navItems[randomIndex].querySelector('a');
-            if (link) {
-                showNotification('🎲 Selecting random exam...', 'success');
-                setTimeout(() => {
-                    window.location.href = link.href;
-                }, 500);
-            }
-        }
-
-        // Add random button listener if 'r' key is pressed
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'r' && document.activeElement !== searchBar) {
-                goToRandomExam();
-            }
-        });
-    </script>
 </body>
 </html>
