@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Total Reviews Webpage</title>
+    <title>NWC204 Comprehensive Exam Review</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
@@ -14,28 +14,85 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <!-- ==================== HEADER ==================== -->
     <header>
         <div class="container header-content">
-            <h1>Exam Review</h1>
-            <div class="search-container">
-                <input type="text" id="search-bar" placeholder="Search questions by keyword...">
-                <span class="search-icon">🔍</span>
+            <h1>📚 NWC204 EXAM REVIEW 📚</h1>
+            <div class="controls-group">
+                <div class="search-container">
+                    <input type="text" id="search-bar" placeholder="Search questions..." autocomplete="off">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="filter-container">
+                    <select id="category-filter" class="filter-select">
+                        <option value="all">All Categories</option>
+                    </select>
+                    <select id="type-filter" class="filter-select">
+                        <option value="all">All Types</option>
+                        <option value="single">Single Choice</option>
+                        <option value="multiple">Multiple Choice</option>
+                    </select>
+                </div>
             </div>
         </div>
     </header>
 
+    <!-- ==================== MAIN CONTENT ==================== -->
     <main class="container">
-        <div id="stats-bar">
-            Showing <span id="count">0</span> questions
+        <!-- Statistics Dashboard -->
+        <div class="stats-dashboard">
+            <div class="stat-card">
+                <span class="stat-icon">📝</span>
+                <div class="stat-content">
+                    <span class="stat-number" id="total-questions">0</span>
+                    <span class="stat-label">Total Questions</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">✅</span>
+                <div class="stat-content">
+                    <span class="stat-number" id="answered-count">0</span>
+                    <span class="stat-label">Answered</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">🎯</span>
+                <div class="stat-content">
+                    <span class="stat-number" id="correct-rate">0%</span>
+                    <span class="stat-label">Accuracy</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">📊</span>
+                <div class="stat-content">
+                    <span class="stat-number" id="showing-count">0</span>
+                    <span class="stat-label">Showing</span>
+                </div>
+            </div>
         </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="randomizeQuestions()">🎲 Randomize</button>
+            <button class="btn btn-secondary" onclick="resetProgress()">🔄 Reset Progress</button>
+            <button class="btn btn-success" onclick="showOnlyUnanswered()">❓ Show Unanswered</button>
+            <button class="btn btn-warning" onclick="scrollToTop()">⬆️ Back to Top</button>
+        </div>
+
+        <!-- Questions Container -->
         <div id="questions-container">
             <!-- Questions will be injected here by JavaScript -->
         </div>
     </main>
 
+    <!-- ==================== FOOTER ==================== -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Exam Review App</p>
+            <div class="footer-content">
+                <p>🎓 NWC204 Comprehensive Exam Review</p>
+                <p>&copy; 2025 | Study hard and ace your exams! 🍀</p>
+                <p class="keyboard-hints">💡 Tips: Press 'R' to randomize | 'ESC' to clear search</p>
+            </div>
         </div>
     </footer>
 </body>
